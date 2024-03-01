@@ -24,6 +24,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// import * as D from './src/data';
+import ClassComponent from './src/screens/ClassComponent';
+import ArrowComponent from './src/screens/ArrowComponent';
+import Person from './src/data/Person';
+import * as D from './src/data';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -55,45 +60,83 @@ function Section({children, title}: SectionProps): React.JSX.Element {
   );
 }
 
+const people = D.makeArray(100).map(D.createRandomPerson);
+
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const children = people.map(person => (
+    <Person key={person.name} person={person}></Person>
+  ));
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  return <ScrollView>{children}</ScrollView>;
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  // const person = D.createRandomPerson();
+
+  // function App(): React.JSX.Element {
+  //   return (
+  //     <SafeAreaView>
+  //       <ClassComponent></ClassComponent>
+  //       <ArrowComponent></ArrowComponent>
+  //       <Person person={person}></Person>
+  //     </SafeAreaView>
+  //   );
+
+  // const personJson = JSON.stringify(person, null, 2);
+  // console.log(personJson);
+
+  // return (
+  //   <SafeAreaView>
+  //     <Text>{personJson}</Text>
+  //   </SafeAreaView>
+  // );
+
+  // console.log(JSON.stringify(person, null, 2));
+
+  // return (
+  //   <SafeAreaView>
+  //     <Text>text</Text>
+  //   </SafeAreaView>
+  // );
+
+  // return <SafeAreaView></SafeAreaView>;
+
+  // const isDarkMode = useColorScheme() === 'dark';
+
+  // const backgroundStyle = {
+  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  // };
+
+  // return (
+  //   <SafeAreaView style={backgroundStyle}>
+  //     <StatusBar
+  //       barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+  //       backgroundColor={backgroundStyle.backgroundColor}
+  //     />
+  //     <ScrollView
+  //       contentInsetAdjustmentBehavior="automatic"
+  //       style={backgroundStyle}>
+  //       <Header />
+  //       <View
+  //         style={{
+  //           backgroundColor: isDarkMode ? Colors.black : Colors.white,
+  //         }}>
+  //         <Section title="Step One">
+  //           Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+  //           screen and then come back to see your edits.
+  //         </Section>
+  //         <Section title="See Your Changes">
+  //           <ReloadInstructions />
+  //         </Section>
+  //         <Section title="Debug">
+  //           <DebugInstructions />
+  //         </Section>
+  //         <Section title="Learn More">
+  //           Read the docs to discover what to do next:
+  //         </Section>
+  //         <LearnMoreLinks />
+  //       </View>
+  //     </ScrollView>
+  //   </SafeAreaView>
+  // );
 }
 
 const styles = StyleSheet.create({
