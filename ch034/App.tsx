@@ -73,7 +73,7 @@ function App(): React.JSX.Element {
       </SafeAreaView>
       <View style={styles.absoluteView}>
         <Icon
-          name="view-week"
+          name="account-eye"
           size={50}
           color="white"
           onPress={iconPressed} />
