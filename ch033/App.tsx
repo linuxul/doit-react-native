@@ -18,6 +18,7 @@ import {
   ImageBackground,
   Image,
   Platform,
+  Alert,
 } from 'react-native';
 
 import {
@@ -27,6 +28,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as D from './src/data';
 
 type SectionProps = PropsWithChildren<{
@@ -61,7 +63,8 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 const avatarUrl = D.randomAvatarUrl();
 const avatarSize = 50;
-const text = `Almost before we knew it, we had left the ground.`
+const text = `Almost before we knew it, we had left the ground.`;
+const onIconPress = () => Alert.alert('icon pressed');
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -81,6 +84,9 @@ function App(): React.JSX.Element {
           <Text style={[styles.text, styles.medium]}>{text} [medium]</Text>
           <Text style={[styles.text, styles.semiBold]}>{text} [semiBold]</Text>
           <Text style={[styles.text, styles.bold]}>{text} [bold]</Text>
+        </View>
+        <View style={[styles.flex, styles.padding10, {backgroundColor: 'green'}]}>
+          <Icon name="home" size={50} color="white" onPress={onIconPress}></Icon>
         </View>
       </ImageBackground>
     </SafeAreaView>
